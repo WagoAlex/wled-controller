@@ -1,0 +1,18 @@
+version: '3.8'  # Specifies the version of Docker Compose file format
+
+services:
+  wled-controller:
+    image: wagoalex/wled-controller:latest  # Specifies the Docker image to use for this service
+    
+    # container_name: wled-controller  # Optionally, you can uncomment this line to set a custom container name
+    
+    environment:
+      - WLED_IP=192.168.2.82               # The IP address of the WLED device to be controlled
+      - COLOR_TO_SET="[200, 110, 0]"       # The color to set on the WLED device in RGB format [GREEN, RED, BLUE]
+                                           # 200, 110, 0 corresponds to WAGO Green
+      - SEG_START=0                        # Start position for the LED segment
+      - SEG_STOP=108                       # Stop position for the LED segment
+      - SEG_FX=3                           # Effect ID for the LED segment, 3 is the default
+      
+    command: ["python", "script.py"]       # The command to run the Python script within the container
+#
